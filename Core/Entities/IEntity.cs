@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Abstract
+namespace Core.Entities
 {
     //classları çıplak bırakmamak için bunu kullanıyoruz
     //IEntity demek bu bir veritabanı nesnesidir demektir 
