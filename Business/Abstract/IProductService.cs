@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,17 @@ using System.Text;
 namespace Business.Abstract
 {
     public interface IProductService
+        //IResult = voidler için, yani döndürülmeyen methodlar! dataya sahip değiller...
+        //IDataResult = List'ler ve diğer döndürülecek şeyler ; hem diğer verileri(mesajlar vs.) hem de datayı içinde barındıracak
+      
     {
         //bu methodları servis ediyoruz
-        List<Product> GetAll();
-        List<Product> GetAllByCategoryId(int id);
-        List<Product> GetByUnitPrice(decimal min, decimal max);
-        List<ProductDetailDto> GetProductDetails();
+        IDataResult<List<Product>> GetAll();
+        IDataResult<List<Product>> GetAllByCategoryId(int id);
+        IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max);
+        IDataResult<List<ProductDetailDto>> GetProductDetails();
+        IDataResult<Product> GetById(int productId);
+        IResult Add(Product product); //void değil IResult döndürsün istiyoruz, dönüş mesajı verebilelim diye ...
+
     }
 }
