@@ -37,7 +37,7 @@ namespace Business.Concrete
         {
             //işkodları vs vs. 
             //yetkisi varsa vs. ardından en alttaki kod çalışır.
-            if (DateTime.Now.Hour==22)
+            if (DateTime.Now.Hour==23)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
