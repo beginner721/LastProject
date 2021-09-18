@@ -34,9 +34,11 @@ namespace WebAPI1
             //AOP altyapýsýný kullanacaðýmýz için en üsteki IoC Container'ler kullanýlabilir. Autofac Bize AOP imkaný sunuyor (diðerleri de ..)
 
             services.AddControllers();
-            services.AddSingleton<IProductService,ProductManager>(); // DATA YOKSA SINGLETON KULLANILIR!, data varsa AddScoped vs.
-            //biri ctor'da IProductService kullanýrsa arkaplanda ona ProductManager new ' i verir
-            services.AddSingleton<IProductDal, EfProductDal>();
+            //services.AddSingleton<IProductService,ProductManager>(); // DATA YOKSA SINGLETON KULLANILIR!, data varsa AddScoped vs.
+            ////biri ctor'da IProductService kullanýrsa arkaplanda ona ProductManager new ' i verir
+            //services.AddSingleton<IProductDal, EfProductDal>();
+            //yukarýdakiler artýk Business içerisinde ....
+            //program.cs kýsmýna da artýk burayý deðil diðerini kullanacaðýmýzý belirtiyoruz
 
         }
 
