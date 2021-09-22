@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
+using Business.CCS;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
@@ -21,13 +22,16 @@ namespace Business.DependencyResolvers.Autofac
             //IProductService istenirse ona ProductManager instance'ı ver demektir. Single Instance tek bir instance oluşturur herkese onu verir.
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
 
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            //alttaki kod Interceptor görevi veriyor 
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly(); //çalışan uygulama içerisinde 
 
-            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces() //implemente edilmiş interface'leri bul 
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()
                 {
-                    Selector = new AspectInterceptorSelector()
+                    Selector = new AspectInterceptorSelector() //Onlar için AspectInterceptorSelector 'u çağır, Aspect var mı diye bakıyor [ASPECT] 
                 }).SingleInstance();
         }
     }

@@ -19,6 +19,7 @@ namespace Business.Abstract
         IDataResult<List<ProductDetailDto>> GetProductDetails();
         IDataResult<Product> GetById(int productId);
         IResult Add(Product product); //void değil IResult döndürsün istiyoruz, dönüş mesajı verebilelim diye ...
+        IResult Update(Product product); 
 
     }
 }

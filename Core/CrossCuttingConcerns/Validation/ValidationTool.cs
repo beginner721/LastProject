@@ -21,15 +21,6 @@ namespace Core.CrossCuttingConcerns.Validation
         }
 
 
-    //    //ÜSTTEKİ KODUN ESKİ VERSİYONU
-
-    //    var context = new ValidationContext<Product>(product); //validation yapılacak zaman standart kod, ilgili thread'i anlatır, <Product> için doğrulama yapacağız çalışacağımız tip de bu (product)
-    //    ProductValidator productValidator = new ProductValidator(); // Product'ı productvalidator kullanarak doğrulayacağım (yani business içine yazdığımız kuralları kullanarak)
-    //    var result = productValidator.Validate(context); //yazdığımız kurallar için ilgili context'i Validate et/doğrula! context= en üstte belirttiğimiz (product)
-    //        if (!result.IsValid)//eğer sonuç geçerli değilse hata fırlat diyoruz (IsValid= eğer sonuç   & !result= geçerli değil   ... ise)
-    //        {
-    //            throw new ValidationException(result.Errors);
-    //}
     }
 }
 
