@@ -7,7 +7,7 @@ namespace Core.Utilities.IoC
 {
     public static class ServiceTool
     {
-        //
+        //aspecte injection yapamadığımız için bu toolu kullanarak servisleri alıp build edebiliyoruz.
         public static IServiceProvider ServiceProvider { get; private set; }
 
         public static IServiceCollection Create(IServiceCollection services)//.NET'in service collectionunu kullanarak

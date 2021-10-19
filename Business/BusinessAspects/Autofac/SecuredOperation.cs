@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Castle.DynamicProxy;
-using Microsoft.Extensions.DependencyInjection; //24.satırdaki getservice burdan gelir.
+using Microsoft.Extensions.DependencyInjection; //25.satırdaki getservice burdan gelir.
 using Core.Extensions;
 using Business.Constants;
 
 namespace Business.BusinessAspects.Autofac
 {
-    //JWT için
+    //JWT için SecuredOperation
     public class SecuredOperation : MethodInterception
     {
         private string[] _roles;

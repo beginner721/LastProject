@@ -14,7 +14,7 @@ namespace Core.Utilities.Security.JWT
 {
     public class JwtHelper : ITokenHelper
     {
-        //IConfiguration API de bulunan AppSettings.json dosyasını okumaya yarar
+        //IConfiguration; API de bulunan AppSettings.json dosyasını okumaya yarar
         //orda okunan değerler bir nesneye atılacak o nesne de tokenoptions
         public IConfiguration Configuration { get; }
         private TokenOptions _tokenOptions;
@@ -35,7 +35,7 @@ namespace Core.Utilities.Security.JWT
             //user bilgisi ve claim bilgierine göre bir token oluşturacak bu method
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration); //token ne zaman expired olacak, appsettingsden tokenoptionsa aldık bu bilgiyi ve burada kullanabildik
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey); //yazdığımız SecurityKeyHelperin içindeki create ile key oluşturuyoruz
-            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey); //hangi algoritma ve hangi anahtar kısmı da burada, buradaki helperda da bunlar var
+            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey); //hangi algoritma ve hangi anahtar kullanılacak kısmı da burada, buradaki helperda da bunlar var
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
             //yukarıda token optionsları kullanarak ilgili user için ilgili credentials'ları kullanarak bu kişiye atanacak claimleri yani yetkileri içeren bir methodla yapıyoruz, method altta
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
@@ -56,8 +56,8 @@ namespace Core.Utilities.Security.JWT
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
                 expires: _accessTokenExpiration,
-                notBefore: DateTime.Now,
-                claims: SetClaims(user, operationClaims),
+                notBefore: DateTime.Now, //not before yani şu andan önceki bir değer verilemez
+                claims: SetClaims(user, operationClaims),//kullanıcının claimleri
                 signingCredentials: signingCredentials
                 //yukarıdaki bilgileri oluşturuyoruz
             );
