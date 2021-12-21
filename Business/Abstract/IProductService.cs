@@ -19,7 +19,10 @@ namespace Business.Abstract
         IDataResult<List<ProductDetailDto>> GetProductDetails();
         IDataResult<Product> GetById(int productId);
         IResult Add(Product product); //void değil IResult döndürsün istiyoruz, dönüş mesajı verebilelim diye ...
-        IResult Update(Product product); 
+        IResult Update(Product product);
+        IResult AddTransactionalTest(Product product);
+        //transaction yönetimi uygulamalarda tutarlılığı korumak için kullanılan bir yöntem,
+
 
     }
 }

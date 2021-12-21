@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -46,7 +48,8 @@ namespace WebAPI1
             //yukarýdakiler artýk Business içerisinde ....
             //program.cs kýsmýna da artýk burayý deðil diðerini kullanacaðýmýzý belirtiyoruz
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); CORE KATMANINA TAÞINDI 
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             //authentication servisi için JwtBearer kullanacaðýmýzý belirtiyoruz.
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -63,7 +66,10 @@ namespace WebAPI1
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
+
+            services.AddDependencyResolvers(new ICoreModule[] {
+            new CoreModule()
+            });
 
         }
 
